@@ -1,0 +1,966 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <title>Orange Report</title>
+
+    <style>
+    html, body, table {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        margin:0px;
+        padding:0;
+        border:0 none;
+    }
+
+    h1, h2 , h3, h4, h5 {
+       padding: 1px;
+       font-size:100%;
+    }
+
+    h1 {
+        color: white;
+        background-color: black;
+        padding: 4px;
+        margin-top: 12px;
+        margin-bottom: 6px;
+    }
+
+    h2 {
+        border-bottom: 1px solid black;
+        padding-left: 2px;
+    }
+
+    ul, table, p {
+        padding: 10px;
+    }
+
+    table {
+        margin-left: -6px;
+    }
+
+    span.timestamp {
+        position: absolute;
+        right: 40px;
+        color:#ddd;
+    }
+
+    div.selected, div.normal {
+        margin: 5px;
+    }
+
+    div.selected {
+        background: #ddd;
+    }
+    @media print{
+        div.selected {
+            background: inherit;
+        }
+        ::-webkit-input-placeholder {
+            color: transparent;
+        }
+    }
+
+    div.content {
+        margin-left: 15px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 2px 6px 2px 6px;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    @media screen {
+        td, th {
+            white-space: nowrap;
+        }
+    }
+
+    .caption {
+        text-align: center;
+        font-size: 90%;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        max-height: 20cm;
+    }
+
+    span.legend-square {
+        width: 1em;
+        height: 1em;
+        margin-right: 6px;
+        display: inline-block;
+    }
+
+    span.legend-item {
+        margin-right: 24px;
+    }
+
+    textarea {
+        border: 1px solid silver;
+        font-style: italic;
+        width: 100%;
+        height: 4em;
+    }
+
+    .textwrapper {
+        padding: 15px;
+    }
+
+    div.normal textarea:invalid {
+        display: none;
+    }
+
+    div.selected textarea {
+        display: block;
+    }
+
+    @media print{
+        section.section, img {
+            page-break-inside: avoid;
+        }
+    }
+    </style>
+    <script>
+    function scrollToId(id) {
+        var sel_el = document.getElementById(id);
+        if (sel_el != undefined) {
+            sel_el.scrollIntoView();
+            return true;
+        }
+        return false;
+    };
+
+    function setSelectedId(id) {
+        var sel_el = document.getElementsByClassName('selected')[0];
+        if (sel_el != undefined && sel_el.id != id) {
+           sel_el.className = 'normal';
+        }
+        sel_el = document.getElementById(id);
+        if (sel_el != undefined) {
+            sel_el.className = 'selected';
+            return true;
+        }
+        return false;
+    };
+    </script>
+
+</head><body onload="(function (id) {     setSelectedId(id); scrollToId(id); }(&quot;2578569161600&quot;));">
+
+ 
+
+<div id="2578569163968" class="normal" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Confusion Matrix <span class="timestamp">Sun May 05 24, 04:54:34</span></h1><div class="content">
+<h2>Confusion matrix for Logistic Regression (showing number of instances)</h2><table>
+<tbody><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:center; vertical-align:middle;">Predicted</td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">0 to 9999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">10000 to 19999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">20000 to 29999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">30000 to 39999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">40000 to 49999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">50000 to 59999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">60000 to 69999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">70000 to 79999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">80000 to 89999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">90000 to 99999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">100000 to 119999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">120000 to 139999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">140000 to 159999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">160000 to 179999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">180000 to 199999</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">More than 200000</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">∑</td>
+</tr><tr><td style="color:black; background:transparent; text-align:center; vertical-align:bottom;">Actual</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">0 to 9999</td>
+<td style="color:#000000; background:#fafafe; text-align:right; vertical-align:middle;">170</td>
+<td style="color:#000000; background:#fbeded; text-align:right; vertical-align:middle;">321</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">13</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">26</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">8</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">56</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">32</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">66</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">10</td>
+<td style="color:#000000; background:#faeaea; text-align:right; vertical-align:middle;">368</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٠٨٨</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">10000 to 19999</td>
+<td style="color:#000000; background:#fdf5f5; text-align:right; vertical-align:middle;">159</td>
+<td style="color:#000000; background:#efeffb; text-align:right; vertical-align:middle;">564</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">7</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">21</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">85</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">36</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">112</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">29</td>
+<td style="color:#000000; background:#f7dddd; text-align:right; vertical-align:middle;">629</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٦٦٦</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">20000 to 29999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">50</td>
+<td style="color:#000000; background:#fdf7f7; text-align:right; vertical-align:middle;">146</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">12</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">11</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">23</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">9</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">28</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">7</td>
+<td style="color:#000000; background:#fbeded; text-align:right; vertical-align:middle;">308</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٦١٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">30000 to 39999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">61</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">98</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">9</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">7</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">8</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">16</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">28</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fdf7f7; text-align:right; vertical-align:middle;">128</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٣٧٠</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">40000 to 49999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">61</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">91</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">17</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">20</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">11</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">9</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">15</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fdf7f7; text-align:right; vertical-align:middle;">136</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٣٧٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">50000 to 59999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">49</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">113</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">7</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">8</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">10</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">30</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">16</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">38</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">13</td>
+<td style="color:#000000; background:#fdf7f7; text-align:right; vertical-align:middle;">148</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٤٣٦</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">60000 to 69999</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">65</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">103</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">15</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">10</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">9</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">32</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">22</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">30</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">104</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٤٠٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">70000 to 79999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">44</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">98</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">8</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">8</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">7</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">20</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">20</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">29</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">7</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">118</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٣٦٤</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">80000 to 89999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">43</td>
+<td style="color:#000000; background:#fdf7f7; text-align:right; vertical-align:middle;">143</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">13</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">50</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">33</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">66</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">13</td>
+<td style="color:#000000; background:#fdf5f5; text-align:right; vertical-align:middle;">182</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٥٦٠</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">90000 to 99999</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">83</td>
+<td style="color:#000000; background:#fdf5f5; text-align:right; vertical-align:middle;">170</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">8</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">12</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">75</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">29</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">71</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">25</td>
+<td style="color:#000000; background:#f9e3e3; text-align:right; vertical-align:middle;">508</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٩٩٦</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">100000 to 119999</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">76</td>
+<td style="color:#000000; background:#fbeded; text-align:right; vertical-align:middle;">325</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">7</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fafafe; text-align:right; vertical-align:middle;">137</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">55</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">103</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">27</td>
+<td style="color:#000000; background:#f9e7e7; text-align:right; vertical-align:middle;">441</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,١٩٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">120000 to 139999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">61</td>
+<td style="color:#000000; background:#fcf0f0; text-align:right; vertical-align:middle;">261</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">97</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">58</td>
+<td style="color:#000000; background:#fdf7f7; text-align:right; vertical-align:middle;">129</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">23</td>
+<td style="color:#000000; background:#fbebeb; text-align:right; vertical-align:middle;">357</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٠٠٥</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">140000 to 159999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">42</td>
+<td style="color:#000000; background:#fbeded; text-align:right; vertical-align:middle;">328</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">81</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">68</td>
+<td style="color:#000000; background:#fafafe; text-align:right; vertical-align:middle;">152</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">13</td>
+<td style="color:#000000; background:#fbebeb; text-align:right; vertical-align:middle;">352</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٠٦٤</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">160000 to 179999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">37</td>
+<td style="color:#000000; background:#fdf5f5; text-align:right; vertical-align:middle;">179</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">42</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">50</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">80</td>
+<td style="color:#000000; background:#fdfdff; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">12</td>
+<td style="color:#000000; background:#fbebeb; text-align:right; vertical-align:middle;">348</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٧٦٠</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">180000 to 199999</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">40</td>
+<td style="color:#000000; background:#fdf5f5; text-align:right; vertical-align:middle;">177</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">41</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">28</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">74</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#000000; background:#fcfcfe; text-align:right; vertical-align:middle;">60</td>
+<td style="color:#000000; background:#f4cece; text-align:right; vertical-align:middle;">917</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٣٤٩</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">More than 200000</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">88</td>
+<td style="color:#000000; background:#fbebeb; text-align:right; vertical-align:middle;">352</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">46</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">44</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">86</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:#000000; background:#fefafa; text-align:right; vertical-align:middle;">79</td>
+<td style="color:#000000; background:#cecef4; text-align:right; vertical-align:middle;">1790</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢,٥٠٥</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">∑</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,١٢٩</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٣,٤٦٩</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٣٥</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٧</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٠١</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢٦</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٣١</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٠٤</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٦٠</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٨٤٢</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٥١٥</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,١٠٧</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٤٢</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٣٢٨</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٦,٨٣٤</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٤,٧٤١</td>
+</tr></tbody></table></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);"></textarea></div></div><div id="2578569161600" class="selected" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Confusion Matrix <span class="timestamp">Sun May 05 24, 04:54:39</span></h1><div class="content">
+<h2>Confusion matrix for Tree (showing number of instances)</h2><table>
+<tbody><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:center; vertical-align:middle;">Predicted</td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">128</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">131</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Accent</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Avante</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Aveo</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Cruze</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Elantra</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Excel</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">I10</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Lanos</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Matrix</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Optra</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Punto</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Shahin</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Tipo</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Tucson</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Uno</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Verna</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">∑</td>
+</tr><tr><td style="color:black; background:transparent; text-align:center; vertical-align:bottom;">Actual</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">128</td>
+<td style="color:#000000; background:#cecef4; text-align:right; vertical-align:middle;">2425</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢,٤٢٥</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">131</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f2f2fc; text-align:right; vertical-align:middle;">572</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٥٧٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Accent</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#efeffb; text-align:right; vertical-align:middle;">733</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f8e2e2; text-align:right; vertical-align:middle;">314</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#faeaea; text-align:right; vertical-align:middle;">222</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٢٧٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Avante</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">36</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fae8e8; text-align:right; vertical-align:middle;">240</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">6</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢٨٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Aveo</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f5f5fd; text-align:right; vertical-align:middle;">452</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f4cece; text-align:right; vertical-align:middle;">542</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٩٩٤</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Cruze</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f6d8d8; text-align:right; vertical-align:middle;">428</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٤٢٨</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Elantra</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fcf4f4; text-align:right; vertical-align:middle;">110</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#e3e3f9; text-align:right; vertical-align:middle;">1319</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fdf5f5; text-align:right; vertical-align:middle;">100</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٥٢٩</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Excel</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fdf7f7; text-align:right; vertical-align:middle;">78</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">8</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٩٠</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">I10</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">10</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fcfcfe; text-align:right; vertical-align:middle;">140</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">14</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fffdfd; text-align:right; vertical-align:middle;">2</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٦٦</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Lanos</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">26</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#e8e8fa; text-align:right; vertical-align:middle;">1124</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fbeded; text-align:right; vertical-align:middle;">192</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٣٤٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Matrix</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f8f8fe; text-align:right; vertical-align:middle;">268</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢٦٨</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Optra</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f9e5e5; text-align:right; vertical-align:middle;">272</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fefcfc; text-align:right; vertical-align:middle;">32</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#ebebfb; text-align:right; vertical-align:middle;">948</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٢٥٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Punto</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f9e7e7; text-align:right; vertical-align:middle;">270</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢٧٠</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Shahin</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#e7e7f9; text-align:right; vertical-align:middle;">1142</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,١٤٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Tipo</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fef8f8; text-align:right; vertical-align:middle;">62</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fafafe; text-align:right; vertical-align:middle;">212</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢٧٤</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Tucson</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fafafe; text-align:right; vertical-align:middle;">182</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٨٢</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Uno</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f7f7fd; text-align:right; vertical-align:middle;">350</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٣٥٠</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">Verna</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#fcf0f0; text-align:right; vertical-align:middle;">158</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#f9e7e7; text-align:right; vertical-align:middle;">262</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#000000; background:#e0e0f8; text-align:right; vertical-align:middle;">1483</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٩٠٣</td>
+</tr><tr><td style="color:black; background:transparent; text-align:left; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">∑</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢,٤٢٥</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٦٣٤</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,١٢٥</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٠</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٧٥٠</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٠</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢,١٣٥</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٠</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٥١</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٦٩٨</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢٨٤</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٥٦٨</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٠</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,١٤٢</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٢١٢</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٨٢</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">٦٢٠</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١,٨١٥</td>
+<td style="color:black; background:transparent; font-weight: bold; text-align:right; vertical-align:middle;">١٤,٧٤١</td>
+</tr></tbody></table></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);"></textarea></div></div></body></html>
